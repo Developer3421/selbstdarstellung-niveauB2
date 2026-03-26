@@ -1,0 +1,274 @@
+/* =============================================
+   Selbstvorstellung – B2 "Step Further" Style
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary:   #1a3a5c;
+  --accent:    #2e7dca;
+  --accent-lt: #e8f2fb;
+  --text:      #2c2c2c;
+  --muted:     #6b7a8d;
+  --bg:        #f4f6f9;
+  --card:      #ffffff;
+  --border:    #d0dae6;
+  --radius:    12px;
+  --shadow:    0 4px 18px rgba(30, 60, 100, 0.10);
+  --transition: 0.25s ease;
+}
+
+body {
+  font-family: 'Segoe UI', Helvetica Neue, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ── Scroll progress bar ── */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 4px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #62b8f5);
+  z-index: 1000;
+  transition: width 0.1s linear;
+}
+
+/* ── Top navigation ── */
+header.site-header {
+  position: sticky;
+  top: 4px;
+  z-index: 900;
+  background: var(--primary);
+  color: #fff;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+.site-header .logo {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.92;
+}
+
+nav.top-nav a {
+  color: rgba(255,255,255,0.80);
+  text-decoration: none;
+  font-size: 0.85rem;
+  margin-left: 1.4rem;
+  transition: color var(--transition);
+}
+nav.top-nav a:hover { color: #fff; }
+
+/* ── Hero / Titel ── */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #2e5f99 55%, var(--accent) 100%);
+  color: #fff;
+  text-align: center;
+  padding: 5rem 1.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0; right: 0;
+  height: 60px;
+  background: var(--bg);
+  clip-path: ellipse(60% 100% at 50% 100%);
+}
+
+.hero .avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 4px solid rgba(255,255,255,0.5);
+  margin: 0 auto 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  user-select: none;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
+}
+
+.hero .tagline {
+  font-size: 1.05rem;
+  max-width: 540px;
+  margin: 0 auto;
+  opacity: 0.88;
+  line-height: 1.65;
+}
+
+/* ── Main layout ── */
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 5rem;
+  display: grid;
+  gap: 2rem;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem 2.2rem;
+  border-left: 5px solid var(--accent);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.card-header .icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--accent-lt);
+  color: var(--accent);
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.card p {
+  margin-top: 0.45rem;
+  color: var(--text);
+}
+
+/* ── Strengths grid ── */
+.strengths-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.9rem;
+  margin-top: 0.8rem;
+}
+
+.strength-item {
+  background: var(--accent-lt);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.strength-item::before {
+  content: '✓';
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* ── Goals timeline ── */
+.timeline {
+  margin-top: 0.8rem;
+  border-left: 3px solid var(--accent);
+  padding-left: 1.5rem;
+  display: grid;
+  gap: 1.1rem;
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.85rem;
+  top: 0.45rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--card);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.timeline-item p {
+  margin: 0;
+}
+
+/* ── Interests pills ── */
+.interests-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.pill {
+  background: var(--accent-lt);
+  color: var(--primary);
+  border: 1.5px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+/* ── Footer ── */
+footer.site-footer {
+  background: var(--primary);
+  color: rgba(255,255,255,0.75);
+  text-align: center;
+  padding: 1.8rem 1rem;
+  font-size: 0.85rem;
+}
+
+footer.site-footer strong {
+  color: #fff;
+}
+
+/* ── Responsive tweaks ── */
+@media (max-width: 600px) {
+  .site-header { padding: 0 1rem; }
+  nav.top-nav { display: none; }
+  main { padding: 2rem 1rem 4rem; }
+  .card { padding: 1.4rem 1.2rem; }
+}
